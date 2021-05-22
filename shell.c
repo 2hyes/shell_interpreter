@@ -37,6 +37,8 @@ int main() {
             args[0] = buf;
             args[1] = (char *)0;
         }
+        if (argn == 0)
+            continue;
         if (!strcmp(args[0], "quit")) // 프롬프트 종료
             break;
         
@@ -44,7 +46,7 @@ int main() {
             argn = 0; mode = 0; isBackground = 0;
             
             s = strtok_r(args[i], delim, &save); /* 문자열에서 delim을 기준으로 단어를 잘라냄 */
-            
+
             while(s) {
                 if (strcmp(s, "&") == 0) { // (2) 후면 실행
                     isBackground = 1;
@@ -87,7 +89,6 @@ int tokenizeByDelim(char buf[], char *delim){
     char *s;
     char *save;
     int argn = 0;
-    int i;
     
     s = strtok_r(buf, delim, &save);
     

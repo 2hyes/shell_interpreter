@@ -49,7 +49,15 @@ int main() {
                 if (strcmp(s, "&") == 0) { // (2) 후면 실행
                     isBackground = 1;
                 }
- 
+                else if (strcmp(s, "<") == 0) { // (4) 입력 재지정
+                    mode = 2;
+                }
+                else if (strcmp(s, ">") == 0) { // (4) 출력 재지정
+                    if (mode == 2)
+                        mode = 4;
+                    else
+                        mode = 3;
+                }
                 else {
                     if(mode < 2)
                         args[argn++] = s;
@@ -67,7 +75,9 @@ int main() {
                 for (i = 0; i < argc; i++)
                     command_exec(i);
             }
-
+            else {
+                printf(" 입출력 재지정\n");
+            }
         }
     }
     exit(0);
